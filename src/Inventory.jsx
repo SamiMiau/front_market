@@ -29,6 +29,7 @@ export default function Inventory() {
   const [contentText, setContentText] = React.useState("")
   const toast = useToast();
   const [listado, setListadoText] = React.useState([])
+
   const {
     handleSubmit,
     register,
@@ -47,19 +48,27 @@ export default function Inventory() {
         items_list.push([content[i]["name"], content[i]["buy_price"], content[i]["sell_price"], content[i]["quantity"], content[i]["description"]])
       }
       setListadoText(items_list)
-      console.log("lista:")
-      console.log(items_list)
     }
-    else if(header==="Logged in ✅"){
-      console.log("Log in: ")
-      console.log(content)
+    else if(header==="Shop 💰🛒"){
+      let items_list =[]
+      console.log("shop selected")
+      for(let i = 0; i < content.length; i++){
+        console.log(content[i])
+        items_list.push([content[i]["name"], content[i]["buy_price"], content[i]["sell_price"], content[i]["quantity"], content[i]["description"]])
+      }
+      setListadoText(items_list)
     }
-    else if(header==="Can not log in ❌"){
-      console.log("Not logged: ")
-      console.log(content)
-    }
+    // else if(header==="Logged in ✅"){
+    //   console.log("Log in: ")
+    //   console.log(content)
+    // }
+    // else if(header==="Can not log in ❌"){
+    //   console.log("Not logged: ")
+    //   console.log(content)
+    // }
     else{
       console.log("others selected")
+      setListadoText(content)
     }
     setContentText(JSON.stringify(content))
     toast({
@@ -152,7 +161,7 @@ export default function Inventory() {
                 </Heading>
                 <Heading fontSize={'2xl'} textAlign={'center'}>
                   {listado.map((item)  => 
-                    <Heading fontSize={'4xl'} textAlign={'center'}>itemcito{item[0]}</Heading>
+                    <Heading fontSize={'4xl'} textAlign={'center'}>itemcito:{item}</Heading>
                     
                     )}
                   {/* {contentText} */}
